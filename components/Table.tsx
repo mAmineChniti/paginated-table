@@ -1,5 +1,12 @@
 import React from "react";
-import { useTable, useSortBy, type ColumnInstance, type Column, type HeaderGroup, type Row } from "react-table";
+import {
+  useTable,
+  useSortBy,
+  type ColumnInstance,
+  type Column,
+  type HeaderGroup,
+  type Row,
+} from "react-table";
 
 interface TableProps {
   columns: Column<object>[];
@@ -7,19 +14,14 @@ interface TableProps {
 }
 
 const Table: React.FC<TableProps> = ({ columns, data }) => {
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTable(
-    {
-      columns,
-      data,
-    },
-    useSortBy
-  );
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    useTable(
+      {
+        columns,
+        data,
+      },
+      useSortBy,
+    );
 
   return (
     <div className="overflow-hidden rounded-lg shadow-lg">
@@ -38,7 +40,9 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
               {headerGroup.headers.map((column: ColumnInstance<object>) => (
                 <th
                   key={column.id}
-                  {...column.getHeaderProps(column.getSortByToggleProps()) as HeaderPropGetter<object>}
+                  {...(column.getHeaderProps(
+                    column.getSortByToggleProps(),
+                  ) as HeaderPropGetter<object>)}
                   className="cursor-pointer select-none px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 hover:bg-gray-200"
                   aria-label={`${
                     column.isSorted

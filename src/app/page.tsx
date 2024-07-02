@@ -23,7 +23,7 @@ export default function HomePage() {
     const fetchPosts = async () => {
       try {
         const response = await axios.get<Post[]>(
-          "https://jsonplaceholder.typicode.com/posts"
+          "https://jsonplaceholder.typicode.com/posts",
         );
         setPosts(response.data);
       } catch (error) {
@@ -53,4 +53,3 @@ export default function HomePage() {
     </div>
   );
 }
-
