@@ -4,23 +4,40 @@ import axios from "axios";
 import PaginatedTable from "@/components/PaginatedTable";
 import Graph from "@/components/Graph";
 
+interface Post {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+}
+
 export default function HomePage() {
   const [showTable, setShowTable] = useState(true);
+  const [posts, setPosts] = useState<Post[]>([]);
 
   const toggleComponent = () => {
     setShowTable((prevShowTable) => !prevShowTable);
   };
-  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await axios.get(
-        "https://jsonplaceholder.typicode.com/posts",
-      );
-      setPosts(response.data);
+      try {
+        const response = await axios.get<Post[]>(
+          "https://jsonplaceholder.typicode.com/posts"
+        );
+        setPosts(response.data);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+        // Handle error as needed
+      }
     };
-    fetchPosts();
-  }, []);
+
+    fetchPosts().catch((error) => {
+      console.error("Error in fetchPosts:", error);
+      // Handle error as needed
+    });
+  }, []); // Empty dependency array means this effect runs once on mount
+
   return (
     <div className="container mx-auto p-4">
       <div className="mb-4">
@@ -36,3 +53,4 @@ export default function HomePage() {
     </div>
   );
 }
+

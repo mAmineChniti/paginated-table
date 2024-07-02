@@ -1,23 +1,25 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import Table from "./Table";
 
+interface Post {
+  id: number;
+  title: string;
+  body: string;
+}
+
 export default function PaginatedTable() {
-  const [posts, setPosts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-    fetchPosts();
-  }, [currentPage, searchQuery]);
-
-  const fetchPosts = async () => {
+  const fetchPosts = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get(
+      const response = await axios.get<Post[]>(
         "https://jsonplaceholder.typicode.com/posts",
         {
           params: {
@@ -33,7 +35,14 @@ export default function PaginatedTable() {
       setPosts([]);
     }
     setIsLoading(false);
-  };
+  }, [currentPage, searchQuery]);
+
+  useEffect(() => {
+    const fetchPostsData = async () => {
+      await fetchPosts();
+    };
+    fetchPostsData();
+  }, [currentPage, searchQuery, fetchPosts]);
 
   const columns = React.useMemo(
     () => [
@@ -53,12 +62,12 @@ export default function PaginatedTable() {
     [],
   );
 
-  const handleSearchChange = (event) => {
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
     setCurrentPage(1);
   };
 
-  const handlePageChange = (direction) => {
+  const handlePageChange = (direction: number) => {
     setCurrentPage((prevPage) => prevPage + direction);
   };
 
@@ -77,14 +86,13 @@ export default function PaginatedTable() {
         <>
           <Table columns={columns} data={posts} />
           <div className="mt-4 flex justify-between">
-            {" "}
             <button
               disabled={currentPage === 1}
               onClick={() => handlePageChange(-1)}
               className="rounded-md bg-blue-500 px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
             >
               ⏪
-            </button>{" "}
+            </button>
             <button
               disabled={posts.length < 10}
               onClick={() => handlePageChange(1)}

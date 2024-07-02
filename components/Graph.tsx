@@ -1,10 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 
-const Graph = ({ data }) => {
-  const chartContainer = useRef(null);
-  const chartInstance = useRef(null);
+interface GraphProps {
+  data: { id: number; title: string; body: string }[];
+}
 
+const Graph: React.FC<GraphProps> = ({ data }) => {
+  const chartContainer = useRef<HTMLCanvasElement>(null);
+  const chartInstance = useRef<Chart<"bar"> | null>(null);
   useEffect(() => {
     if (chartInstance.current) {
       chartInstance.current.destroy();
