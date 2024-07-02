@@ -1,6 +1,6 @@
-"use client";
-import React, { useEffect, useRef } from "react";
-import Chart from "chart.js/auto";
+'use client';
+import React, { useEffect, useRef } from 'react';
+import Chart from 'chart.js/auto';
 
 interface GraphProps {
   data: { id: number; title: string; body: string }[];
@@ -8,7 +8,7 @@ interface GraphProps {
 
 const Graph: React.FC<GraphProps> = ({ data }) => {
   const chartContainer = useRef<HTMLCanvasElement>(null);
-  const chartInstance = useRef<Chart<"bar"> | null>(null);
+  const chartInstance = useRef<Chart<'bar'> | null>(null);
 
   useEffect(() => {
     if (chartInstance.current) {
@@ -16,18 +16,18 @@ const Graph: React.FC<GraphProps> = ({ data }) => {
     }
 
     if (chartContainer.current) {
-      const ctx = chartContainer.current.getContext("2d");
+      const ctx = chartContainer.current.getContext('2d');
       if (ctx) {
         chartInstance.current = new Chart(ctx, {
-          type: "bar",
+          type: 'bar',
           data: {
             labels: data.map((item) => item.title),
             datasets: [
               {
-                label: "Data Distribution",
+                label: 'Data Distribution',
                 data: data.map((item) => item.id),
-                backgroundColor: "rgba(54, 162, 235, 0.6)",
-                borderColor: "rgba(54, 162, 235, 1)",
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderColor: 'rgba(54, 162, 235, 1)',
                 borderWidth: 1,
               },
             ],
@@ -38,22 +38,22 @@ const Graph: React.FC<GraphProps> = ({ data }) => {
                 beginAtZero: true,
                 title: {
                   display: true,
-                  text: "ID",
-                  color: "black",
+                  text: 'ID',
+                  color: 'black',
                   font: {
                     size: 15,
-                    weight: "bold",
+                    weight: 'bold',
                   },
                 },
               },
               x: {
                 title: {
                   display: true,
-                  text: "Title",
-                  color: "black",
+                  text: 'Title',
+                  color: 'black',
                   font: {
                     size: 15,
-                    weight: "bold",
+                    weight: 'bold',
                   },
                 },
               },

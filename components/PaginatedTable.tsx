@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect, useCallback } from "react";
-import axios from "axios";
-import Table from "./Table";
-import { type ColumnDef } from "@tanstack/react-table";
+import React, { useState, useEffect, useCallback } from 'react';
+import axios from 'axios';
+import Table from './Table';
+import { type ColumnDef } from '@tanstack/react-table';
 
 interface Post {
   id: number;
@@ -14,25 +14,25 @@ interface Post {
 export default function PaginatedTable() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const fetchPosts = useCallback(async () => {
     setIsLoading(true);
     try {
       const response = await axios.get<Post[]>(
-        "https://jsonplaceholder.typicode.com/posts",
+        'https://jsonplaceholder.typicode.com/posts',
         {
           params: {
             _page: currentPage,
             _limit: 10,
             q: searchQuery,
           },
-        },
+        }
       );
       setPosts(response.data);
     } catch (error) {
-      console.error("Error fetching posts:", error);
+      console.error('Error fetching posts:', error);
       setPosts([]);
     }
     setIsLoading(false);
@@ -48,19 +48,19 @@ export default function PaginatedTable() {
   const columns = React.useMemo<ColumnDef<Post, keyof Post>[]>(
     () => [
       {
-        accessorKey: "id",
-        header: "ID",
+        accessorKey: 'id',
+        header: 'ID',
       },
       {
-        accessorKey: "title",
-        header: "Title",
+        accessorKey: 'title',
+        header: 'Title',
       },
       {
-        accessorKey: "body",
-        header: "Body",
+        accessorKey: 'body',
+        header: 'Body',
       },
     ],
-    [],
+    []
   );
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,8 +1,9 @@
-"use client";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import PaginatedTable from "@/components/PaginatedTable";
-import Graph from "@/components/Graph";
+'use client';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { createNightowl } from '@bufferhead/nightowl';
+import PaginatedTable from '@/components/PaginatedTable';
+import Graph from '@/components/Graph';
 
 interface Post {
   userId: number;
@@ -12,6 +13,12 @@ interface Post {
 }
 
 export default function HomePage() {
+  useEffect(() => {
+    createNightowl({
+      defaultMode: 'dark',
+      toggleButtonMode: 'newState',
+    });
+  }, []);
   const [showTable, setShowTable] = useState(true);
   const [posts, setPosts] = useState<Post[]>([]);
 
@@ -23,17 +30,17 @@ export default function HomePage() {
     const fetchPosts = async () => {
       try {
         const response = await axios.get<Post[]>(
-          "https://jsonplaceholder.typicode.com/posts",
+          'https://jsonplaceholder.typicode.com/posts'
         );
         setPosts(response.data);
       } catch (error) {
-        console.error("Error fetching posts:", error);
+        console.error('Error fetching posts:', error);
         // Handle error as needed
       }
     };
 
     fetchPosts().catch((error) => {
-      console.error("Error in fetchPosts:", error);
+      console.error('Error in fetchPosts:', error);
       // Handle error as needed
     });
   }, []); // Empty dependency array means this effect runs once on mount
@@ -45,7 +52,7 @@ export default function HomePage() {
           onClick={toggleComponent}
           className="rounded-md bg-blue-500 px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
-          {showTable ? "Show Chart" : "Show Table"}
+          {showTable ? 'Show Chart' : 'Show Table'}
         </button>
       </div>
 

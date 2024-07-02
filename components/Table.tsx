@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import React from "react";
+import React from 'react';
 import {
   useReactTable,
   getCoreRowModel,
   getSortedRowModel,
   flexRender,
   type ColumnDef,
-} from "@tanstack/react-table";
+} from '@tanstack/react-table';
 
 interface Post {
   id: number;
@@ -38,16 +38,21 @@ export default function Table({ columns, data }: TableProps) {
               <th
                 key={header.id}
                 colSpan={header.colSpan}
-                className="border-b border-gray-300 px-4 py-2 text-left cursor-pointer"
+                className="cursor-pointer border-b border-gray-300 px-4 py-2 text-left"
                 onClick={header.column.getToggleSortingHandler()}
               >
-                {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                {header.isPlaceholder
+                  ? null
+                  : flexRender(
+                      header.column.columnDef.header,
+                      header.getContext()
+                    )}
                 <span>
                   {header.column.getIsSorted()
-                    ? header.column.getIsSorted() === "desc"
-                      ? " 🔽"
-                      : " 🔼"
-                    : ""}
+                    ? header.column.getIsSorted() === 'desc'
+                      ? ' 🔽'
+                      : ' 🔼'
+                    : ''}
                 </span>
               </th>
             ))}
