@@ -10,7 +10,6 @@
   - [Setup Instructions](#setup-instructions)
   - [Project Structure](#project-structure)
   - [Componenets Visualization and Explanation](#componenets-visualization-and-explanation)
-    - [Table Component](#table-component)
 
 ## Overview
 
@@ -78,8 +77,6 @@ This project is a frontend application developed with Next.js (version 14), feat
 ## Componenets Visualization and Explanation
 
 ![image](img/componenetsVisualization.png)
-
-### Table Component
 
 [Table](components/Table.tsx): A table component that is a child of the PaginatedTable, this is a simple table that displays the fetched data from the API.
 
