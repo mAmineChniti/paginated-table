@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import Table from "./Table";
+import { type ColumnDef } from "@tanstack/react-table";
 
 interface Post {
   id: number;
@@ -44,19 +45,19 @@ export default function PaginatedTable() {
     fetchPostsData();
   }, [currentPage, searchQuery, fetchPosts]);
 
-  const columns = React.useMemo(
+  const columns = React.useMemo<ColumnDef<Post, keyof Post>[]>(
     () => [
       {
-        Header: "ID",
-        accessor: "id",
+        accessorKey: "id",
+        header: "ID",
       },
       {
-        Header: "Title",
-        accessor: "title",
+        accessorKey: "title",
+        header: "Title",
       },
       {
-        Header: "Body",
-        accessor: "body",
+        accessorKey: "body",
+        header: "Body",
       },
     ],
     [],
