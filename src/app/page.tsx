@@ -1,7 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { createNightowl } from '@bufferhead/nightowl';
 import PaginatedTable from '@/components/PaginatedTable';
 import Graph from '@/components/Graph';
 
@@ -13,12 +12,6 @@ interface Post {
 }
 
 export default function HomePage() {
-  useEffect(() => {
-    createNightowl({
-      defaultMode: 'dark',
-      toggleButtonMode: 'newState',
-    });
-  }, []);
   const [showTable, setShowTable] = useState(true);
   const [posts, setPosts] = useState<Post[]>([]);
 
