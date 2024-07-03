@@ -15,8 +15,8 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --fix",
-    "*.{js,jsx,ts,tsx,css,md}": "prettier --write"
+    "**/*.{js,jsx,ts,tsx}": "next lint --fix",
+    "**/*.{js,jsx,ts,tsx,css,md}": "prettier --write"
   },
   "dependencies": {
     "@t3-oss/env-nextjs": "^0.10.1",
