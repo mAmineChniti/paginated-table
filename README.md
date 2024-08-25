@@ -36,8 +36,8 @@ This project is a frontend application developed with Next.js (version 14), feat
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/mAmineChniti/frontend-task
-   cd frontend-task
+   git clone https://github.com/mAmineChniti/paginated-table
+   cd paginated-table
    ```
 
 2. **Install dependencies:**
@@ -57,7 +57,7 @@ This project is a frontend application developed with Next.js (version 14), feat
 ## Project Structure
 
 ```bash
-/frontend-task (project directory)
+/paginated-table (project directory)
 │
 ├── components/             # React components
 │   ├── Table.tsx           # Component for displaying data in a table
