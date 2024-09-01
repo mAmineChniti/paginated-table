@@ -1,7 +1,5 @@
 'use client';
-
-import React, { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
+import React, { useMemo } from 'react';
 import Table from './Table';
 import { type ColumnDef } from '@tanstack/react-table';
 
@@ -11,41 +9,22 @@ interface Post {
   body: string;
 }
 
-export default function PaginatedTable() {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [searchQuery, setSearchQuery] = useState<string>('');
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+interface PaginatedTableProps {
+  posts: Post[];
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  searchQuery: string;
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+}
 
-  const fetchPosts = useCallback(async () => {
-    setIsLoading(true);
-    try {
-      const response = await axios.get<Post[]>(
-        'https://jsonplaceholder.typicode.com/posts',
-        {
-          params: {
-            _page: currentPage,
-            _limit: 10,
-            q: searchQuery,
-          },
-        }
-      );
-      setPosts(response.data);
-    } catch (error) {
-      console.error('Error fetching posts:', error);
-      setPosts([]);
-    }
-    setIsLoading(false);
-  }, [currentPage, searchQuery]);
-
-  useEffect(() => {
-    const fetchPostsData = async () => {
-      await fetchPosts();
-    };
-    fetchPostsData();
-  }, [currentPage, searchQuery, fetchPosts]);
-
-  const columns = React.useMemo<ColumnDef<Post, keyof Post>[]>(
+const PaginatedTable: React.FC<PaginatedTableProps> = ({
+  posts,
+  currentPage,
+  setCurrentPage,
+  searchQuery,
+  setSearchQuery,
+}) => {
+  const columns = useMemo<ColumnDef<Post, keyof Post>[]>(
     () => [
       {
         accessorKey: 'id',
@@ -81,7 +60,7 @@ export default function PaginatedTable() {
         onChange={handleSearchChange}
         className="mb-4 w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
-      {isLoading ? (
+      {posts.length === 0 ? (
         <p className="text-center text-gray-500">Loading...</p>
       ) : (
         <>
@@ -106,4 +85,6 @@ export default function PaginatedTable() {
       )}
     </div>
   );
-}
+};
+
+export default PaginatedTable;

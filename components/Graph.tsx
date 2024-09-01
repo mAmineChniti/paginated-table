@@ -1,12 +1,12 @@
 'use client';
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
 
 interface GraphProps {
   data: { id: number; title: string; body: string }[];
 }
 
-const Graph: React.FC<GraphProps> = ({ data }) => {
+export default function Graph({ data }: GraphProps) {
   const chartContainer = useRef<HTMLCanvasElement>(null);
   const chartInstance = useRef<Chart<'bar'> | null>(null);
 
@@ -75,6 +75,4 @@ const Graph: React.FC<GraphProps> = ({ data }) => {
       <canvas ref={chartContainer} width="400" height="200"></canvas>
     </div>
   );
-};
-
-export default Graph;
+}
