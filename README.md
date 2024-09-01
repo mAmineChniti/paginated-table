@@ -64,11 +64,10 @@ This project is a frontend application developed with Next.js (version 14), feat
 │   ├── PaginatedTable.tsx  # Component for pagination
 │   └── Graph.js            # Component for data visualization (bonus)
 │
-├── src/                    # Next.js pages
-│   ├── app/                # App folder
-│   │   ├── page.tsx        # HomePage component
-│   │   └── layout.tsx      # Entrypoint
-│   └────── ...
+├── app/                    # App folder
+│   ├── page.tsx            # HomePage component
+│   └── layout.tsx          # Entrypoint
+│
 ├── README.md               # Project documentation
 │
 └── ...
@@ -84,4 +83,4 @@ This project is a frontend application developed with Next.js (version 14), feat
 
 [Graph](components/Graph.tsx): A graph based on the data fetched from the API.
 
-[HomePage](src/app/page.tsx): A parent component for the [PaginatedTable](components/PaginatedTable.tsx), [Graph](components/Graph.tsx) and the button that allows toggling between them.
+[HomePage](app/page.tsx): A parent component for the [PaginatedTable](components/PaginatedTable.tsx), [Graph](components/Graph.tsx) and the button that allows toggling between them.
