@@ -14,12 +14,6 @@
     "format-lint": "bun run lint:fix && bun run prettier:fix",
     "prepare": "husky"
   },
-  "lint-staged": {
-    "**/*.{js,jsx,ts,tsx,css,md}": [
-      "prettier --write",
-      "eslint --fix"
-    ]
-  },
   "dependencies": {
     "@t3-oss/env-nextjs": "^0.10.1",
     "@tanstack/react-table": "^8.19.2",
