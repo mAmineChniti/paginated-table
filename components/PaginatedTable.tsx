@@ -58,7 +58,7 @@ const PaginatedTable: React.FC<PaginatedTableProps> = ({
         placeholder="Search..."
         value={searchQuery}
         onChange={handleSearchChange}
-        className="mb-4 w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="mb-4 w-full rounded-md border border-gray-300 p-2 focus:outline-hidden focus:ring-2 focus:ring-blue-500"
       />
       {posts.length === 0 ? (
         <p className="text-center text-gray-500">Loading...</p>
@@ -69,14 +69,14 @@ const PaginatedTable: React.FC<PaginatedTableProps> = ({
             <button
               disabled={currentPage === 1}
               onClick={() => handlePageChange(-1)}
-              className="rounded-md bg-blue-500 px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+              className="rounded-md bg-blue-500 px-4 py-2 text-white focus:outline-hidden focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
             >
               ⏪
             </button>
             <button
               disabled={posts.length < 10}
               onClick={() => handlePageChange(1)}
-              className="rounded-md bg-blue-500 px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+              className="rounded-md bg-blue-500 px-4 py-2 text-white focus:outline-hidden focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
             >
               ⏩
             </button>
