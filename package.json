@@ -23,7 +23,7 @@
     "next": "15.4.10",
     "react": "^19.1.0",
     "react-chartjs-2": "^5.3.0",
-    "react-dom": "^19.1.0",
+    "react-dom": "^19.2.3",
     "zod": "^4.0.17"
   },
   "devDependencies": {
@@ -31,7 +31,7 @@
     "@types/eslint": "9.6.1",
     "@types/node": "^24.9.1",
     "@types/react": "^19.1.6",
-    "@types/react-dom": "^19.1.6",
+    "@types/react-dom": "^19.2.3",
     "eslint": "^9.33.0",
     "eslint-config-next": "15.4.6",
     "husky": "^9.1.7",
