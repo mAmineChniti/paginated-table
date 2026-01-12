@@ -7,7 +7,7 @@
       "dependencies": {
         "@t3-oss/env-nextjs": "^0.13.6",
         "@tanstack/react-table": "^8.21.3",
-        "chart.js": "^4.4.9",
+        "chart.js": "^4.5.1",
         "commitizen": "^4.3.1",
         "geist": "^1.4.2",
         "next": "16.1.1",
@@ -321,7 +321,7 @@
 
     "chardet": ["chardet@0.7.0", "", {}, ""],
 
-    "chart.js": ["chart.js@4.5.0", "", { "dependencies": { "@kurkle/color": "^0.3.0" } }, "sha512-aYeC/jDgSEx8SHWZvANYMioYMZ2KX02W6f6uVfyteuCGcadDLcYVHdfdygsTQkQ4TKn5lghoojAsPj5pu0SnvQ=="],
+    "chart.js": ["chart.js@4.5.1", "", { "dependencies": { "@kurkle/color": "^0.3.0" } }, "sha512-GIjfiT9dbmHRiYi6Nl2yFCq7kkwdkp1W/lp2J99rX0yo9tgJGn3lKQATztIjb5tVtevcBtIdICNWqlq5+E8/Pw=="],
 
     "cli-cursor": ["cli-cursor@3.1.0", "", { "dependencies": { "restore-cursor": "^3.1.0" } }, ""],
 
